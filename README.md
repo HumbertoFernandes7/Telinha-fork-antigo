@@ -50,12 +50,12 @@ Em teste. O que já foi **verificado**:
 - [x] Áudio da janela.
 - [x] Conexão direta entre duas casas diferentes (720p, ~57 fps, 0% de perda).
 - [x] Assistir em uma janela separada do Discord.
+- [x] **Instalador + add-on sobre o Vencord oficial**, verificados em um PC real: instalação pelo `TelinhaInstaller.exe` e transmissão com o **áudio da tela inteira** funcionando (todo o som do PC, menos o do Discord; veja as [Limitações](#limitações)).
 
 Em andamento / planejado:
 
 - [ ] **Em andamento:** assistir dentro da própria tela da call (hoje a transmissão abre numa janela própria).
-- [ ] **Disponível, ainda em validação:** áudio ao transmitir a **tela inteira** (todo o som do PC, menos o do Discord; veja as [Limitações](#limitações)).
-- [ ] **Planejado:** distribuição final usando o **Vencord oficial** + um instalador próprio do Telinha, sem precisar de um build modificado (veja o aviso abaixo).
+- [ ] **Em teste:** a distribuição final (Vencord oficial + o instalador próprio do Telinha, sem build modificado) já funciona numa versão de teste. Falta mais teste em outros PCs, e o instalador ainda não é assinado digitalmente (por isso o aviso do SmartScreen).
 
 ## Requisitos
 
@@ -66,17 +66,25 @@ Em andamento / planejado:
 
 ## Como instalar a versão de teste
 
-> **Aviso:** a versão de teste atual é um **build de teste**: um fork do Vencord 1.15.13 com o plugin Telinha incluído. Ele **substitui os arquivos** da pasta `%APPDATA%\Vencord\dist` (guardando uma cópia dos arquivos oficiais antes). Suas configurações, temas e outros plugins não são tocados. No modelo final planejado, você manterá o Vencord oficial e adicionará o Telinha com um instalador próprio.
+> **Aviso:** o jeito recomendado agora é o **instalador `TelinhaInstaller.exe`, por cima do Vencord oficial**. Ele **não mexe nos arquivos do Vencord** (nem em suas configurações, temas e outros plugins): só troca o pequeno arquivo que o Vencord coloca no Discord (`app.asar`) por um que carrega o Vencord e também o Telinha, guardando uma cópia do original. É uma **versão de teste** (pre-release).
 
-1. Instale o **Vencord oficial** em [vencord.dev/download](https://vencord.dev/download/), caso ainda não tenha. (Sem ele, o instalador avisa e não faz nada.)
-2. Baixe o ZIP `Telinha-teste-….zip` na página de [**Releases**](https://github.com/HumbertoFernandes7/Telinha/releases). As versões de teste são marcadas como **pre-release**.
-3. Se o Windows reclamar (SmartScreen/antivírus), **antes de extrair**: botão direito no ZIP > Propriedades > marque **Desbloquear** > OK. Os scripts são texto puro, e você pode abri-los no Bloco de Notas para conferir.
-4. Botão direito no ZIP > **Extrair tudo**. (Não rode de dentro do ZIP.)
-5. Dê dois cliques em **`instalar.cmd`** e espere aparecer "Instalação concluída".
-6. **Feche o Discord por completo**: botão direito no ícone dele na bandeja do sistema (perto do relógio) > "Sair do Discord". Abra de novo.
-7. Vá em **Configurações do usuário > Vencord > Plugins**, pesquise **Telinha** e **ative** o plugin.
+1. Tenha o **Vencord oficial** instalado: [vencord.dev/download](https://vencord.dev/download/). (Sem ele, o instalador avisa e não faz nada.)
+2. Baixe o **`TelinhaInstaller.exe`** da versão de teste mais recente na página de [**Releases**](https://github.com/HumbertoFernandes7/Telinha/releases) (hoje: [`teste-3`](https://github.com/HumbertoFernandes7/Telinha/releases/tag/teste-3)). As versões de teste são marcadas como **pre-release**.
+3. Dê dois cliques nele. O Windows (SmartScreen) vai avisar, porque o instalador ainda não é assinado digitalmente: clique em **Mais informações > Executar assim mesmo**.
+4. Clique em **Instalar**. Se o Discord estiver aberto, o instalador pede para fechá-lo.
+5. Quando aparecer "Pronto!", **abra o Discord de novo** (se ele ainda estiver aberto, feche por completo antes: botão direito no ícone dele na bandeja do sistema, perto do relógio > "Sair do Discord"). O Telinha já vem **ativado**; se não aparecer, confira em **Configurações do usuário > Vencord > Plugins**.
 
-**Para desfazer tudo**: feche o Discord por completo, dê dois cliques em **`restaurar.cmd`** e abra o Discord de novo. Isso volta ao Vencord oficial.
+O instalador registra o que fez em `%APPDATA%\Telinha\logs\installer.log`.
+
+**Para atualizar**: rode o `TelinhaInstaller.exe` mais novo e escolha **Atualizar ou reparar**.
+
+**Para desinstalar**: rode o `TelinhaInstaller.exe` de novo e clique em **Desinstalar**. O Vencord volta **exatamente como estava antes** de você instalar o Telinha.
+
+**Se usar o "Reparar" do instalador do próprio Vencord** (ou reinstalar o Vencord), o Discord volta ao Vencord puro e o Telinha deixa de carregar: **rode o `TelinhaInstaller.exe` de novo** para colocá-lo de volta.
+
+### Versões de teste antigas
+
+As primeiras versões de teste eram um **build de teste**: um fork do Vencord 1.15.13 com o Telinha incluído, num ZIP `Telinha-teste-….zip` com `instalar.cmd` e `restaurar.cmd`. Esse build **substituía os arquivos** de `%APPDATA%\Vencord\dist` (guardando uma cópia dos oficiais em `dist.backup-oficial-…`). Não use mais: se você instalou um desses, dê dois cliques no `restaurar.cmd` dele (com o Discord fechado por completo) para voltar ao Vencord oficial **antes** de usar o `TelinhaInstaller.exe`.
 
 ## Como usar
 
@@ -140,7 +148,7 @@ Por padrão, só quem está no mesmo canal de voz que você (e tem o Telinha). V
 Pode, de preferência em modo borderless (tela cheia exclusiva pode aparecer preta). O Telinha não injeta DLL nenhuma no jogo, de propósito, por segurança com anti-cheat.
 
 **O instalador vai estragar meu Vencord?**
-Ele guarda uma cópia dos arquivos oficiais (`%APPDATA%\Vencord\dist.backup-oficial-…`) e o `restaurar.cmd` volta tudo ao original. Não apague essa pasta de backup até terminar os testes. Se o Discord não abrir, rode o `restaurar.cmd`; se nem isso resolver, reinstale o Vencord oficial em [vencord.dev/download](https://vencord.dev/download/).
+Não: ele não altera os arquivos do Vencord. Só troca o pequeno `app.asar` do Discord (o que o Vencord colocou lá) por um que também carrega o Telinha, e guarda uma cópia do original em `%APPDATA%\Telinha\backup`. Rodar o `TelinhaInstaller.exe` de novo e clicar em **Desinstalar** devolve o do Vencord exatamente como estava. Se o Discord não abrir, tente **Desinstalar**; se nem isso resolver, reinstale o Vencord oficial em [vencord.dev/download](https://vencord.dev/download/).
 
 **Deu problema. E agora?**
 Nas configurações do plugin, clique em **"Copiar diagnóstico"** e mande o texto para quem compartilhou o Telinha com você ou para o autor (Humberto, [@HumbertoFernandes7](https://github.com/HumbertoFernandes7)). Os logs não contêm IPs.
@@ -154,6 +162,7 @@ pnpm install
 pnpm build --standalone --disable-updater   # build do Vencord com o Telinha
 pnpm smoke:renderer                         # smoke test de carregamento do renderer
 pnpm package:test                           # gera o ZIP do pacote de teste
+pnpm build:installer                        # gera dist\installer\TelinhaInstaller.exe (Go; roda vet e testes)
 ```
 
 - O código do plugin fica em [`src/plugins/telinha/`](src/plugins/telinha/). O protocolo P2P está em `src/plugins/telinha/protocol.ts`.
@@ -180,10 +189,10 @@ Licenciado sob a **GPL-3.0-or-later**, a mesma licença do Vencord. Veja o arqui
 
 **Telinha** lets friends in the same Discord voice channel stream their screen or a window to each other and watch **inside Discord**, directly between their PCs (peer-to-peer, WebRTC). It is free and there is no server of ours: public Nostr relays (through the Trystero library) are used only so peers can find each other, and the video goes straight PC to PC (STUN only). It supports up to 1080p at 60 fps, and captures audio: the sound of a single window, or, for whole-screen streams, all PC sound except Discord's (Windows 10 2004+; done by a small unsigned helper, `telinha-audio.exe`, which antivirus or Smart App Control may block, in which case the screen streams without sound).
 
-It is a plugin for [Vencord](https://github.com/Vendicated/Vencord) (a Discord client mod), and it is currently **in testing**. The test release is a **fork of Vencord 1.15.13 with the Telinha plugin**, installed with `instalar.cmd` from the zip in [Releases](https://github.com/HumbertoFernandes7/Telinha/releases) (pre-release); `restaurar.cmd` reverts it. It needs official Vencord to be installed first. The planned final model is to keep the official Vencord and add Telinha with its own installer.
+It is a plugin for [Vencord](https://github.com/Vendicated/Vencord) (a Discord client mod), and it is currently **in testing**. The recommended way to install it is **`TelinhaInstaller.exe` on top of the official Vencord** (no Vencord fork): download it from the latest test release in [Releases](https://github.com/HumbertoFernandes7/Telinha/releases) (pre-release, currently [`teste-3`](https://github.com/HumbertoFernandes7/Telinha/releases/tag/teste-3)), run it (SmartScreen: "More info" > "Run anyway", since it is not code-signed yet), click Install and reopen Discord. Telinha comes enabled. It does not modify Vencord's files; running the installer again and choosing Uninstall puts Vencord back exactly as before. If you use the Vencord installer's "Repair", run the Telinha installer again. It needs official Vencord to be installed first. The older test builds (a Vencord 1.15.13 fork installed with `instalar.cmd` from a zip) are obsolete: run their `restaurar.cmd` before using the installer.
 
 - **Requirements:** Windows 10 2004+/11, Discord desktop with official Vencord. Everyone who streams or watches needs Telinha.
-- **Verified so far:** screen/window capture in stock Discord on Windows, window audio, a direct connection between two homes (720p, ~57 fps, 0% loss), viewing in a separate Discord window. Watching inside the call view is in progress.
+- **Verified so far:** screen/window capture in stock Discord on Windows, window audio, a direct connection between two homes (720p, ~57 fps, 0% loss), viewing in a separate Discord window, and the installer + add-on on top of the official Vencord on a real PC (streaming with whole-screen audio working). Watching inside the call view is in progress.
 - **Privacy:** a direct connection means people in the call can see each other's IP. Only people in the same voice channel are accepted by default, there is an optional group password, and logs never contain IP addresses.
 - **Limitations:** each viewer gets a separate copy from the streamer (2-4 viewers recommended); exclusive-fullscreen games may show black (use borderless); no DLL injection into games.
 - **Disclaimer:** client mods violate Discord's Terms of Service, so use it at your own risk. This project is not affiliated with Discord or the Vencord team, and the Vencord team does not support this build.
