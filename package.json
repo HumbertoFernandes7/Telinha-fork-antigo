@@ -34,7 +34,8 @@
         "testWeb": "pnpm lint && pnpm buildWeb && pnpm testTsc",
         "testTsc": "tsc --noEmit",
         "smoke:renderer": "node scripts/telinha/smokeRenderer.mjs",
-        "package:test": "node scripts/telinha/package-test-build.mjs"
+        "package:test": "node scripts/telinha/package-test-build.mjs",
+        "build:addon": "node addon/build/build-addon.mjs"
     },
     "dependencies": {
         "@intrnl/xxhash64": "^0.1.2",
