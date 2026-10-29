@@ -33,7 +33,8 @@
         "test": "pnpm buildStandalone && pnpm testTsc && pnpm lint && pnpm lint-styles && pnpm generatePluginJson",
         "testWeb": "pnpm lint && pnpm buildWeb && pnpm testTsc",
         "testTsc": "tsc --noEmit",
-        "smoke:renderer": "node scripts/peerlive/smokeRenderer.mjs"
+        "smoke:renderer": "node scripts/peerlive/smokeRenderer.mjs",
+        "package:test": "node scripts/peerlive/package-test-build.mjs"
     },
     "dependencies": {
         "@intrnl/xxhash64": "^0.1.2",
