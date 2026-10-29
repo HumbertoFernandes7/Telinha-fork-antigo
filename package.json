@@ -35,7 +35,8 @@
         "testTsc": "tsc --noEmit",
         "smoke:renderer": "node scripts/telinha/smokeRenderer.mjs",
         "package:test": "node scripts/telinha/package-test-build.mjs",
-        "build:addon": "node addon/build/build-addon.mjs"
+        "build:addon": "node addon/build/build-addon.mjs",
+        "build:installer": "installer\\build.cmd"
     },
     "dependencies": {
         "@intrnl/xxhash64": "^0.1.2",
