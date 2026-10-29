@@ -14,6 +14,7 @@ O PeerLive é um plugin para o [Vencord](https://github.com/Vendicated/Vencord) 
 - **Gratuito e sem servidor nosso:** não existe backend do PeerLive. Ninguém paga nada e nada passa por nós.
 - **Até 1080p a 60 fps.** (A captura no Windows moderno é limitada a cerca de 60 fps.)
 - **Som da janela:** ao transmitir uma janela, o som daquele aplicativo vai junto (só dele, não do resto do PC).
+- **Som da tela inteira:** ao transmitir a tela inteira, vai todo o som do PC, **menos o do Discord** (seus amigos não ouvem a própria voz de volta). Exige Windows 10 versão 2004 ou superior.
 - **Codec automático:** H.264 por hardware quando os dois lados suportam; caso contrário, VP9.
 
 ## Como funciona
@@ -51,7 +52,7 @@ Em teste. O que já foi **verificado**:
 Em andamento / planejado:
 
 - [ ] **Em andamento:** assistir dentro da própria tela da call (hoje a transmissão abre numa janela própria).
-- [ ] **Planejado:** áudio ao transmitir a **tela inteira** (hoje só o áudio de janela é capturado).
+- [ ] **Disponível, ainda em validação:** áudio ao transmitir a **tela inteira** (todo o som do PC, menos o do Discord; veja as [Limitações](#limitações)).
 - [ ] **Planejado:** distribuição final usando o **Vencord oficial** + um instalador próprio do PeerLive, sem precisar de um build modificado (veja o aviso abaixo).
 
 ## Requisitos
@@ -81,7 +82,7 @@ Em andamento / planejado:
 
 1. Entre no mesmo canal de voz que os amigos (todos com o PeerLive).
 2. No painel da conexão de voz (canto inferior esquerdo), clique em **"Transmitir com PeerLive"**.
-3. Escolha uma **tela** ou uma **janela**. Janela = vai com o som daquela janela; tela inteira = sem som por enquanto.
+3. Escolha uma **tela** ou uma **janela**. Janela = vai com o som daquela janela; tela inteira = vai todo o som do PC, menos o do Discord.
 4. Escolha a qualidade (até 1080p60) e clique em **Transmitir**.
 
 **Assistir** (qualquer uma destas formas)
@@ -110,7 +111,7 @@ Por enquanto, a transmissão abre em uma janela própria, com tela cheia, volume
 - Jogos em **tela cheia exclusiva** podem aparecer pretos. Use borderless.
 - Como só usamos STUN (sem servidor de retransmissão), em redes muito restritivas a conexão direta pode não se estabelecer.
 - O PeerLive **não injeta DLLs em jogos** (de propósito, por segurança com sistemas anti-cheat).
-- Áudio da tela inteira ainda não existe (planejado).
+- O áudio da tela inteira usa um pequeno programa auxiliar que vem no pacote, o `peerlive-audio.exe` (Windows 10 versão 2004 ou superior). Ele **ainda não é assinado digitalmente**, então o antivírus ou o Controle Inteligente de Aplicativos (Smart App Control) do Windows pode marcá-lo ou bloqueá-lo. Se for bloqueado, a tela é transmitida **sem som** (o seletor mostra o motivo); transmitir uma janela com som não depende dele.
 - A visualização dentro da tela da call ainda está em desenvolvimento.
 
 ## Perguntas frequentes
@@ -175,7 +176,7 @@ Licenciado sob a **GPL-3.0-or-later**, a mesma licença do Vencord. Veja o arqui
 
 ## English summary
 
-**PeerLive** lets friends in the same Discord voice channel stream their screen or a window to each other and watch **inside Discord**, directly between their PCs (peer-to-peer, WebRTC). It is free and there is no server of ours: public Nostr relays (through the Trystero library) are used only so peers can find each other, and the video goes straight PC to PC (STUN only). It supports up to 1080p at 60 fps, and captures window audio (whole-screen audio is planned).
+**PeerLive** lets friends in the same Discord voice channel stream their screen or a window to each other and watch **inside Discord**, directly between their PCs (peer-to-peer, WebRTC). It is free and there is no server of ours: public Nostr relays (through the Trystero library) are used only so peers can find each other, and the video goes straight PC to PC (STUN only). It supports up to 1080p at 60 fps, and captures audio: the sound of a single window, or, for whole-screen streams, all PC sound except Discord's (Windows 10 2004+; done by a small unsigned helper, `peerlive-audio.exe`, which antivirus or Smart App Control may block, in which case the screen streams without sound).
 
 It is a plugin for [Vencord](https://github.com/Vendicated/Vencord) (a Discord client mod), and it is currently **in testing**. The test release is a **fork of Vencord 1.15.13 with the PeerLive plugin**, installed with `instalar.cmd` from the zip in [Releases](https://github.com/HumbertoFernandes7/Telinha/releases) (pre-release); `restaurar.cmd` reverts it. It needs official Vencord to be installed first. The planned final model is to keep the official Vencord and add PeerLive with its own installer.
 
