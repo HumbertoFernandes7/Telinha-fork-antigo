@@ -66,7 +66,7 @@ Em andamento / planejado:
 > **Aviso:** a versão de teste atual é um **build de teste**: um fork do Vencord 1.15.13 com o plugin PeerLive incluído. Ele **substitui os arquivos** da pasta `%APPDATA%\Vencord\dist` (guardando uma cópia dos arquivos oficiais antes). Suas configurações, temas e outros plugins não são tocados. No modelo final planejado, você manterá o Vencord oficial e adicionará o PeerLive com um instalador próprio.
 
 1. Instale o **Vencord oficial** em [vencord.dev/download](https://vencord.dev/download/), caso ainda não tenha. (Sem ele, o instalador avisa e não faz nada.)
-2. Baixe o ZIP `PeerLive-teste-….zip` na página de [**Releases**](https://github.com/HumbertoFernandes7/PeerLive/releases). As versões de teste são marcadas como **pre-release**.
+2. Baixe o ZIP `PeerLive-teste-….zip` na página de [**Releases**](https://github.com/HumbertoFernandes7/Telinha/releases). As versões de teste são marcadas como **pre-release**.
 3. Se o Windows reclamar (SmartScreen/antivírus), **antes de extrair**: botão direito no ZIP > Propriedades > marque **Desbloquear** > OK. Os scripts são texto puro, e você pode abri-los no Bloco de Notas para conferir.
 4. Botão direito no ZIP > **Extrair tudo**. (Não rode de dentro do ZIP.)
 5. Dê dois cliques em **`instalar.cmd`** e espere aparecer "Instalação concluída".
@@ -140,7 +140,7 @@ Pode, de preferência em modo borderless (tela cheia exclusiva pode aparecer pre
 Ele guarda uma cópia dos arquivos oficiais (`%APPDATA%\Vencord\dist.backup-oficial-…`) e o `restaurar.cmd` volta tudo ao original. Não apague essa pasta de backup até terminar os testes. Se o Discord não abrir, rode o `restaurar.cmd`; se nem isso resolver, reinstale o Vencord oficial em [vencord.dev/download](https://vencord.dev/download/).
 
 **Deu problema. E agora?**
-Nas configurações do plugin, clique em **"Copiar diagnóstico"** e abra uma [issue](https://github.com/HumbertoFernandes7/PeerLive/issues) com o texto (os logs não contêm IPs).
+Nas configurações do plugin, clique em **"Copiar diagnóstico"** e mande o texto para quem compartilhou o PeerLive com você ou para o autor (Humberto, [@HumbertoFernandes7](https://github.com/HumbertoFernandes7)). Os logs não contêm IPs.
 
 ## Para desenvolvedores
 
@@ -177,7 +177,7 @@ Licenciado sob a **GPL-3.0-or-later**, a mesma licença do Vencord. Veja o arqui
 
 **PeerLive** lets friends in the same Discord voice channel stream their screen or a window to each other and watch **inside Discord**, directly between their PCs (peer-to-peer, WebRTC). It is free and there is no server of ours: public Nostr relays (through the Trystero library) are used only so peers can find each other, and the video goes straight PC to PC (STUN only). It supports up to 1080p at 60 fps, and captures window audio (whole-screen audio is planned).
 
-It is a plugin for [Vencord](https://github.com/Vendicated/Vencord) (a Discord client mod), and it is currently **in testing**. The test release is a **fork of Vencord 1.15.13 with the PeerLive plugin**, installed with `instalar.cmd` from the zip in [Releases](https://github.com/HumbertoFernandes7/PeerLive/releases) (pre-release); `restaurar.cmd` reverts it. It needs official Vencord to be installed first. The planned final model is to keep the official Vencord and add PeerLive with its own installer.
+It is a plugin for [Vencord](https://github.com/Vendicated/Vencord) (a Discord client mod), and it is currently **in testing**. The test release is a **fork of Vencord 1.15.13 with the PeerLive plugin**, installed with `instalar.cmd` from the zip in [Releases](https://github.com/HumbertoFernandes7/Telinha/releases) (pre-release); `restaurar.cmd` reverts it. It needs official Vencord to be installed first. The planned final model is to keep the official Vencord and add PeerLive with its own installer.
 
 - **Requirements:** Windows 10 2004+/11, Discord desktop with official Vencord. Everyone who streams or watches needs PeerLive.
 - **Verified so far:** screen/window capture in stock Discord on Windows, window audio, a direct connection between two homes (720p, ~57 fps, 0% loss), viewing in a separate Discord window. Watching inside the call view is in progress.
